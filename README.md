@@ -1,7 +1,7 @@
 <h1 align="center"> Quiz interativo </h1>
 
 <p align="center">
-Projeto desenvolvido com durante estudos sobre Javascript <br/>
+Projeto desenvolvido durante estudos sobre Javascript <br/>
 </p>
 
 <br>

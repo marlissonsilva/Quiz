@@ -5,23 +5,28 @@ const maximumScore = 100
 
 let score = 0
 
-const getUserAnswers = () => {
-    let userAnswers = []
+// antes e depois da função getUserAnsers
+const getUserAnswers = () => correctAnswers.map((_, index) =>
+    form[`inputQuestion${index + 1}`].value)
 
-    correctAnswers.forEach((_, index) => {
-        const userAnswer = form[`inputQuestion${index + 1}`].value
-        userAnswers.push(userAnswer)
-    })
-    return userAnswers
-}
+// const getUserAnswers = () => {
+//     let userAnswers = []
 
-const calculateScore = (userAnswers) => {
+//     correctAnswers.forEach((_, index) => {
+//         const userAnswer = form[`inputQuestion${index + 1}`].value
+//         userAnswers.push(userAnswer)
+//     })
+//     return userAnswers
+// }
+
+const calculateScore = userAnswers => {
     const incrementedScore = (userAnswer, index) => {
         const isCorrectUserAnswer = userAnswer === correctAnswers[index]
         if (isCorrectUserAnswer) {
             score += maximumScore / correctAnswers.length
         }
     }
+
     userAnswers.forEach(incrementedScore)
 }
 
@@ -53,10 +58,15 @@ const highScoreAnimation = () => {
     containerFinalScore.querySelector('.gif').classList.add('d-none')
 }
 
+
+const resetUserScore = () => {
+    score = 0
+}
+
 form.addEventListener('submit', event => {
     event.preventDefault()
-    score = 0
 
+    resetUserScore()
     const userAnswers = getUserAnswers()
     calculateScore(userAnswers)
     animationFinalScore()
