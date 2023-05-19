@@ -1,23 +1,12 @@
 const form = document.querySelector('.quiz-form')
 const containerFinalScore = document.querySelector('.container-final-score')
 const correctAnswers = ['B', 'C', 'B', 'A', 'D', 'A', 'D', 'C', 'D', 'B']
-const maximumScore = 100
+const maximumScore = 100;
 
 let score = 0
 
-// antes e depois da função getUserAnsers
-const getUserAnswers = () => correctAnswers.map((_, index) =>
-    form[`inputQuestion${index + 1}`].value)
-
-// const getUserAnswers = () => {
-//     let userAnswers = []
-
-//     correctAnswers.forEach((_, index) => {
-//         const userAnswer = form[`inputQuestion${index + 1}`].value
-//         userAnswers.push(userAnswer)
-//     })
-//     return userAnswers
-// }
+const getUserAnswers = () => correctAnswers
+    .map((_, index) => form[`inputQuestion${index + 1}`].value)
 
 const calculateScore = userAnswers => {
     const incrementedScore = (userAnswer, index) => {
@@ -26,7 +15,6 @@ const calculateScore = userAnswers => {
             score += maximumScore / correctAnswers.length
         }
     }
-
     userAnswers.forEach(incrementedScore)
 }
 
@@ -57,7 +45,6 @@ const highScoreAnimation = () => {
     }
     containerFinalScore.querySelector('.gif').classList.add('d-none')
 }
-
 
 const resetUserScore = () => {
     score = 0
